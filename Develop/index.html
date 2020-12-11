@@ -30,9 +30,63 @@
     </header>
     <div class="container">
       <!-- Timeblocks go here -->
+
+    
+
+
+
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+    <script src = "../lib/moment/moment.min.js"></script>
+    <script>
+
+      //variables
+      var currentTime;
+      //timzoneClicked
+      arr1 = [9,10,11,12,1,2,3,4,5,6,7,8,9,10,11]
+      
+   
+//dynamic clock
+ setInterval(function(){ 
+ $('#currentDay').text(moment().format('MMMM Do YYYY, h:mm:ss a'))
+  }, 1000);
+
+
+  function appendTimeBlocks(){
+    for(var i =0; i<arr1.length; i++){
+    var timeBlock = $('<textarea>');
+    $('.container').append(timeBlock, )
+    timeBlock.addClass('row', 'col-7')
+    
+      
+    }
+
+  }
+
+  function appendbuttons(){
+    for(var i =0; i<arr1.length; i++){
+    var saveBtn = $('<button>');
+    saveBtn.addClass('row', 'col-3', '.saveBtn')
+    $('.container').append(saveBtn)
+      
+    }
+
+  }
+  appendTimeBlocks()
+  appendbuttons()
+
+
+  // if(moment().format('h')>5){
+   
+  // }
+
+ //time blck function
+ //if cuurent time is greater than time
+ //block out time bliock
+
+    </script>
   </body>
 </html>
