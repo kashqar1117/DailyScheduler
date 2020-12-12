@@ -28,7 +28,7 @@
       <p class="lead">A simple calendar app for scheduling your work day</p>
       <p id="currentDay" class="lead"></p>
     </header>
-    <div class="container">
+    <div class="container row ">
       <!-- Timeblocks go here -->
 
     
@@ -46,7 +46,7 @@
       //variables
       var currentTime;
       //timzoneClicked
-      arr1 = [9,10,11,12,1,2,3,4,5,6,7,8,9,10,11]
+      arr1 = ['9am','10am','11am','12am','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm','9pm','10pm','11pm']
       
    
 //dynamic clock
@@ -57,35 +57,32 @@
 
   function appendTimeBlocks(){
     for(var i =0; i<arr1.length; i++){
-    var timeBlock = $('<textarea>');
-    $('.container').append(timeBlock, )
-    timeBlock.addClass('row', 'col-7')
-    
-      
-    }
-
-  }
-
-  function appendbuttons(){
-    for(var i =0; i<arr1.length; i++){
-    var saveBtn = $('<button>');
-    saveBtn.addClass('row', 'col-3', '.saveBtn')
-    $('.container').append(saveBtn)
+      var showTime = $('<p>')
+      var timeBlock = $('<textarea>');
+      var saveBtn = $('<button>');
+      showTime.addClass('col-3','hour');
+      timeBlock.addClass('col-7');
+      saveBtn.addClass('saveBtn');
+      showTime.text(arr1[i]);
+      saveBtn.text('lock');
+      $('.container').append(showTime);
+      $('.container').append(timeBlock);
+      $('.container').append(saveBtn);
       
     }
 
   }
   appendTimeBlocks()
-  appendbuttons()
+  
+    function timeBlockColorChnge(){
 
+      
 
-  // if(moment().format('h')>5){
+    }
+
+ function usrInput(){
    
-  // }
-
- //time blck function
- //if cuurent time is greater than time
- //block out time bliock
+ }
 
     </script>
   </body>
