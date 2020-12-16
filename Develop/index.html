@@ -47,12 +47,12 @@
     <button value="1" class='saveBtn'><i class="fa fa-lock" aria-hidden="true"></i></button>
 
     <div class="col-md-3 appendTimes hour ">2:00pm</div>
-    <textarea id='2pm' class="col-md-7"></textarea>
+    <textarea id='2' class="col-md-7 textarea"></textarea>
     <button value="2" class='saveBtn'><i class="fa fa-lock" aria-hidden="true"></i></button>
 
     <div class="col-md-3 appendTimes hour ">3:00pm</div>
     <textarea id='3pm' class="col-md-7"></textarea>
-    <button class='saveBtn'><i class="fa fa-lock" aria-hidden="true"></i></button>
+    <button value = '3' class='saveBtn'><i class="fa fa-lock" aria-hidden="true"></i></button>
 
     <div class="col-md-3 appendTimes hour ">4:00pm</div>
     <textarea id='4pm' class="col-md-7"></textarea>
@@ -161,15 +161,21 @@
       $('#10pm').text(todosList[13])
       $('#11pm').text(todosList[14])
     }
+    console.log(saveButtons.val())
 
     function todoClockColorChanger(){
       
-      if (moment().startOf('day').fromNow() == saveButtons.val){
-        txtarea.addClass('.present')
+      if (parseInt(moment().format('h')) == parseInt(saveButtons.val()))
+      {
+        txtarea.addClass('present')
         
       }
 
+    
+
     }
+
+    console.log(moment().format('h'))
     todoClockColorChanger()
     setTodoItems()
     
