@@ -21,7 +21,7 @@
   </header>
   <div id="clockCon" class="container row">
     <!-- Timeblocks go here -->
-
+<!-- 
 
     <div class="col-md-3 appendTimes hour ">9am</div>
 
@@ -51,7 +51,7 @@
     <button value="2" class='saveBtn'><i class="fa fa-lock" aria-hidden="true"></i></button>
 
     <div class="col-md-3 appendTimes hour ">3:00pm</div>
-    <textarea id='3pm' class="col-md-7"></textarea>
+    <textarea id='3pm' value ='3' class="col-md-7"></textarea>
     <button value = '3' class='saveBtn'><i class="fa fa-lock" aria-hidden="true"></i></button>
 
     <div class="col-md-3 appendTimes hour ">4:00pm</div>
@@ -84,7 +84,7 @@
 
     <div class="col-md-3 appendTimes hour ">11:00pm</div>
     <textarea id='11pm' class="col-md-7"></textarea>
-    <button class='saveBtn'><i class="fa fa-lock" aria-hidden="true"></i></button>
+    <button class='saveBtn'><i class="fa fa-lock" aria-hidden="true"></i></button> -->
 
 
   </div>
@@ -100,127 +100,49 @@
     txtarea = $('.textarea')
     var currentTime = moment().format('MMMM Do YYYY, h:mm:ss a');
     console.log(currentTime)
+    timeSlots = ['9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00p', '3:00pm', '4:00pm', '5:00pm']
 
-    //timzoneClicked
+    
 
-
-
-
-
-
-
-    var clockCon = $('#clockCon')
-
-    //dynamic clock
-    setInterval(function () {
-      $('#currentDay').text(moment().format('MMMM Do YYYY, h'))
-
-    }, 1000);
+    // //timzoneClicked
 
 
 
-    saveButtons.on('click', function () {
-      event.preventDefault()
 
-      todos = []
-      todos.push($('#9am').val())
-      todos.push($('#10am').val())
-      todos.push($('#11am').val())
-      todos.push($('#12pm').val())
-      todos.push($('#1pm').val())
-      todos.push($('#2pm').val())
-      todos.push($('#3pm').val())
-      todos.push($('#4pm').val())
-      todos.push($('#5pm').val())
-      todos.push($('#6pm').val())
-      todos.push($('#7pm').val())
-      todos.push($('#8pm').val())
-      todos.push($('#9pm').val())
-      todos.push($('#10pm').val())
-      todos.push($('#11pm').val())
+    function generateTimeSlots(time){
 
-      localStorage.setItem('todoList', JSON.stringify(todos))
 
-    })
-    function setTodoItems() {
 
-      var todosList = JSON.parse(localStorage.getItem('todoList'))
-      $('#9am').text(todosList[0])
-      $('#10am').text(todosList[1])
-      $('#11am').text(todosList[2])
-      $('#12pm').text(todosList[3])
-      $('#1pm').text(todosList[4])
-      $('#2pm').text(todosList[5])
-      $('#3pm').text(todosList[6])
-      $('#4pm').text(todosList[7])
-      $('#5pm').text(todosList[8])
-      $('#6pm').text(todosList[9])
-      $('#7pm').text(todosList[10])
-      $('#8pm').text(todosList[11])
-      $('#9pm').text(todosList[12])
-      $('#10pm').text(todosList[13])
-      $('#11pm').text(todosList[14])
-    }
-    console.log(saveButtons.val())
-
-    function todoClockColorChanger(){
-      
-      if (parseInt(moment().format('h')) == parseInt(saveButtons.val()))
+      for (var i = 0; i < timeSlots.length; i++)
       {
-        txtarea.addClass('present')
-        
+        var timeZone = $('<div>')
+        var txtarea = $('<textarea>')
+        var svBtn = $('<button>')  
+        timeZone.text(timeSlots[i]) 
+        svBtn.text( 'save')
+        timeZone.addClass('hour col-lg-3') 
+        txtarea.addClass('textarea col-lg-8')
+        svBtn.addClass('saveBtn') 
+        $('.container').append(timeZone , txtarea, svBtn)
+
+
       }
 
-    
-
+      
+      
+      
     }
-
-    console.log(moment().format('h'))
-    todoClockColorChanger()
-    setTodoItems()
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // function generateTimeSlots(time){
-
-
-
-    //   for (var i = 0; i < timeSlots.length; i++)
-    //   {
-    //     var timeZone = $('<div>')
-    //     var txtarea = $('<textarea>')
-    //     var svBtn = $('<button>')  
-    //     timeZone.text(timeSlots[i]) 
-    //     svBtn.text( 'save')
-    //     timeZone.addClass('hour col-lg-3') 
-    //     txtarea.addClass('textarea col-lg-8')
-    //     svBtn.addClass('saveBtn') 
-    //     $('.container').append(timeZone , txtarea, svBtn)
-
-
-    //   }
-
-
-
-
-    // }
-
-
-
+    generateTimeSlots()
+    
+    
+    
+    
+       saveButtons.on('click', function(){
+    
+        console.log(txtarea.text())
+    
+       })
 
 
 
