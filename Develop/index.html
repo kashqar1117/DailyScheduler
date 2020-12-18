@@ -101,6 +101,12 @@
     var currentTime = moment().format('MMMM Do YYYY, h:mm:ss a');
     console.log(currentTime)
     timeSlots = ['9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00p', '3:00pm', '4:00pm', '5:00pm']
+    note = []
+
+    var notes = JSON.parse(localStorage.getItem('note'))
+    console.log(notes)
+
+    
 
     
 
@@ -110,8 +116,8 @@
 
 
     function generateTimeSlots(time){
-
-
+      // $('.container').empty()
+      
 
       for (var i = 0; i < timeSlots.length; i++)
       {
@@ -119,33 +125,60 @@
         var txtarea = $('<textarea>')
         var svBtn = $('<button>')  
         timeZone.text(timeSlots[i]) 
+        txtarea.text()
         svBtn.text( 'save')
         timeZone.addClass('hour col-lg-3') 
         txtarea.addClass('textarea col-lg-8')
         svBtn.addClass('saveBtn') 
+        txtarea.data('index',i)
+        
         $('.container').append(timeZone , txtarea, svBtn)
-
-
+        
+        
       }
 
       
-      
-      
     }
+      
     
     generateTimeSlots()
     
     
-    
-    
-       saveButtons.on('click', function(){
-    
-        console.log(txtarea.text())
-    
-       })
+    // $(document).on(".saveBtn",'click', function(){
+    $('.saveBtn').on('click', function(){
+      var text = $(this).prev().val();
+
+      console.log($(this).prev().data('index'))
+      console.log(text)
+      note.push(text)
+      
+      localStorage.setItem('note', JSON.stringify(note))
+      
+      // generateTimeSlots()
+      
+    })
+    function setItem(){
+
+      var notes = JSON.parse(localStorage.getItem('note'))
+    }
+
+   
 
 
+    // function changeTextAreaColor(){
 
+    //   if(currentTime ===parseInt(moment().format('MMMM Do YYYY, h:mm:ss a'))){
+    //     //change text area color to present
+
+    //   // }if (currentTime <parseInt(moment().format('MMMM Do YYYY, h:mm:ss a')){
+    //   //   //change textarea to  future
+        
+    //   // }
+    // }
+    
+    
+    
+   
 
 
   </script>
