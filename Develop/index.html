@@ -32,10 +32,11 @@
 
     //variables
    
-    var currentTime = moment().format('h');
+    var currentTime = moment().format('H');
+    currentTime =13;
     
-    timeSlots = ['9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00p', '3:00pm', '4:00pm', '5:00pm']
-    let note = []
+    timeSlots = ['9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm']
+  
 
     var planner = JSON.parse(localStorage.getItem('planner')) || [];
     console.log(planner)
@@ -68,7 +69,27 @@
         svBtn.text('save')
         timeZone.addClass('hour col-lg-3') 
         txtarea.addClass('textarea col-lg-8')
-        svBtn.addClass('saveBtn') 
+        svBtn.addClass('saveBtn')
+
+
+          var tempTime = parseInt(timeslot.split(':00')[0])
+          // console.log(timeslot.split(':00'))
+
+          if (timeslot.split(':00')[1] == "pm"){
+            tempTime = tempTime +12;
+
+
+          }
+          console.log(tempTime, currentTime)
+        if(currentTime>tempTime){
+          txtarea.addClass('past')
+          console.log('bam!')
+        }else if(currentTime<tempTime){
+          txtarea.addClass('future')
+             
+        }else{
+          txtarea.addClass('present')
+        }
         
         
         
@@ -87,14 +108,15 @@
     $('.saveBtn').on('click', function(){
       var text = $(this).prev().val();
       console.log(text)
-      note.push(text)
+      
       
       //questions witht the this thing
       var hour  = $(this).prev().prev().text()
+      
 
       //how does this set a key thing work
       planner[hour]=text
-      console.log(planner)
+      
       
       localStorage.setItem('planner', JSON.stringify(planner))
       
@@ -106,9 +128,7 @@
 
     function changeTextAreaColor(){
 
-    console.log(parseInt(moment().format('h')) ===parseInt(currentTime)){
-      
-    }
+   
 
   }
   changeTextAreaColor()
