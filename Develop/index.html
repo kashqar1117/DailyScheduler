@@ -21,71 +21,6 @@
   </header>
   <div id="clockCon" class="container row">
     <!-- Timeblocks go here -->
-<!-- 
-
-    <div class="col-md-3 appendTimes hour ">9am</div>
-
-    <textarea id='9am' class=" textarea col-md-7" value='9:00am' ></textarea>
-
-    <button class='saveBtn' value="9"><i class="fa fa-lock" aria-hidden="true"></i></button>
-
-
-    <div class="col-md-3 appendTimes hour ">10:00am</div>
-    <textarea id='10am' class=" textarea col-md-7"></textarea>
-    <button class='saveBtn' value='10'><i class="fa fa-lock" aria-hidden="true"></i></button>
-
-    <div class="col-md-3 appendTimes hour ">11:00am</div>
-    <textarea id='11am' class="col-md-7"></textarea>
-    <button class='saveBtn' value='11'><i class="fa fa-lock" aria-hidden="true"></i></button>
-
-    <div class="col-md-3 appendTimes hour ">12:00pm</div>
-    <textarea id='12pm' class="col-md-7"></textarea>
-    <button value="12" class='saveBtn'><i class="fa fa-lock" aria-hidden="true"></i></button>
-
-    <div class="col-md-3 appendTimes hour ">1:00pm</div>
-    <textarea id='1pm' class="col-md-7"></textarea>
-    <button value="1" class='saveBtn'><i class="fa fa-lock" aria-hidden="true"></i></button>
-
-    <div class="col-md-3 appendTimes hour ">2:00pm</div>
-    <textarea id='2' class="col-md-7 textarea"></textarea>
-    <button value="2" class='saveBtn'><i class="fa fa-lock" aria-hidden="true"></i></button>
-
-    <div class="col-md-3 appendTimes hour ">3:00pm</div>
-    <textarea id='3pm' value ='3' class="col-md-7"></textarea>
-    <button value = '3' class='saveBtn'><i class="fa fa-lock" aria-hidden="true"></i></button>
-
-    <div class="col-md-3 appendTimes hour ">4:00pm</div>
-    <textarea id='4pm' class="col-md-7"></textarea>
-    <button class='saveBtn'><i class="fa fa-lock" aria-hidden="true"></i></button>
-
-    <div class="col-md-3 appendTimes hour ">5:00pm</div>
-    <textarea id='5pm' class="col-md-7"></textarea>
-    <button class='saveBtn'><i class="fa fa-lock" aria-hidden="true"></i></button>
-
-    <div class="col-md-3 appendTimes hour " >6:00pm</div>
-    <textarea id='6pm' class="col-md-7" ></textarea>
-    <button class='saveBtn' value = '6' ><i class="fa fa-lock" aria-hidden="true"></i></button>
-
-    <div class="col-md-3 appendTimes hour ">7:00pm</div>
-    <textarea id='7pm' class="col-md-7"></textarea>
-    <button class='saveBtn'><i class="fa fa-lock" aria-hidden="true"></i></button>
-
-    <div class="col-md-3 appendTimes hour ">8:00pm</div>
-    <textarea id='8pm' class="col-md-7"></textarea>
-    <button class='saveBtn'><i class="fa fa-lock" aria-hidden="true"></i></button>
-
-    <div class="col-md-3 appendTimes hour ">9:00pm</div>
-    <textarea id='9pm' class="col-md-7"></textarea>
-    <button class='saveBtn'><i class="fa fa-lock" aria-hidden="true"></i></button>
-
-    <div class="col-md-3 appendTimes hour ">10:00pm</div>
-    <textarea id='10pm' class="col-md-7"></textarea>
-    <button class='saveBtn'><i class="fa fa-lock" aria-hidden="true"></i></button>
-
-    <div class="col-md-3 appendTimes hour ">11:00pm</div>
-    <textarea id='11pm' class="col-md-7"></textarea>
-    <button class='saveBtn'><i class="fa fa-lock" aria-hidden="true"></i></button> -->
-
 
   </div>
 
@@ -96,41 +31,46 @@
   <script>
 
     //variables
-    var saveButtons = $('.saveBtn')
-    txtarea = $('.textarea')
-    var currentTime = moment().format('MMMM Do YYYY, h:mm:ss a');
-    console.log(currentTime)
-    timeSlots = ['9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00p', '3:00pm', '4:00pm', '5:00pm']
-    note = []
-
-    var notes = JSON.parse(localStorage.getItem('note'))
-    console.log(notes)
-
+   
+    var currentTime = moment().format('h');
     
+    timeSlots = ['9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00p', '3:00pm', '4:00pm', '5:00pm']
+    let note = []
 
+    var planner = JSON.parse(localStorage.getItem('planner')) || [];
+    console.log(planner)
+   
+
+    // set interval for dynamic time
+    setInterval(function(){ 
+  
+  
+    $('#currentDay').text(moment().format('MMMM Do YYYY, h:mm:ss a'))
+  
+  
+  }, 1000);
     
 
     // //timzoneClicked
 
-
-
-
-    function generateTimeSlots(time){
-      // $('.container').empty()
+    function generateTimeSlots(){
       
-
+    
       for (var i = 0; i < timeSlots.length; i++)
       {
+        //question about timslor varaible
+        var timeslot = timeSlots[i]
         var timeZone = $('<div>')
-        var txtarea = $('<textarea>')
+        var txtarea = $('<textarea>').text(planner[timeslot])
         var svBtn = $('<button>')  
-        timeZone.text(timeSlots[i]) 
+        timeZone.text(timeslot) 
         txtarea.text()
-        svBtn.text( 'save')
+        svBtn.text('save')
         timeZone.addClass('hour col-lg-3') 
         txtarea.addClass('textarea col-lg-8')
         svBtn.addClass('saveBtn') 
-        txtarea.data('index',i)
+        
+        
         
         $('.container').append(timeZone , txtarea, svBtn)
         
@@ -143,40 +83,35 @@
     
     generateTimeSlots()
     
-    
-    // $(document).on(".saveBtn",'click', function(){
+   
     $('.saveBtn').on('click', function(){
       var text = $(this).prev().val();
-
-      console.log($(this).prev().data('index'))
       console.log(text)
       note.push(text)
       
-      localStorage.setItem('note', JSON.stringify(note))
+      //questions witht the this thing
+      var hour  = $(this).prev().prev().text()
+
+      //how does this set a key thing work
+      planner[hour]=text
+      console.log(planner)
       
-      // generateTimeSlots()
+      localStorage.setItem('planner', JSON.stringify(planner))
       
     })
-    function setItem(){
-
-      var notes = JSON.parse(localStorage.getItem('note'))
-    }
+   
 
    
 
 
-    // function changeTextAreaColor(){
+    function changeTextAreaColor(){
 
-    //   if(currentTime ===parseInt(moment().format('MMMM Do YYYY, h:mm:ss a'))){
-    //     //change text area color to present
+    console.log(parseInt(moment().format('h')) ===parseInt(currentTime)){
+      
+    }
 
-    //   // }if (currentTime <parseInt(moment().format('MMMM Do YYYY, h:mm:ss a')){
-    //   //   //change textarea to  future
-        
-    //   // }
-    // }
-    
-    
+  }
+  changeTextAreaColor()
     
    
 
