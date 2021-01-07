@@ -1,7 +1,7 @@
 
 
     //variables
-   console.log('script')
+
     var currentTime ;
     
     timeSlots = ['9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm']
@@ -18,10 +18,28 @@
       var now = moment()
       currentTime = now.format('H');
     $('#currentDay').text(now.format('MMMM Do YYYY, h:mm:ss a'))
-  
     generateTimeSlots()
+  
   }, 1000);
-    
+
+
+  // setInterval(function(){
+
+  // generateTimeSlots()
+
+
+
+
+  // } , 100000)
+  
+
+
+
+
+
+
+
+
 
     // //timzoneClicked
 
@@ -52,6 +70,8 @@
 
 
           }
+
+          function generateColors
           
         if(currentTime>tempTime){
           txtarea.addClass('past')
