@@ -2,7 +2,7 @@ Daily Planner !
 
 This is very tricky code that I had to while to write. I decided to append all timeslots to the dom from my JQUERY code. It intoduced me to alot of methods that I wouldn't have learned otherwise.
 
-![.Picture od Daily Planner](05-Third-Party-APIs/02-Homework/Photos/overwiew)
+![.Picture od Daily Planner](/Users/kristinaal-ashqar/Desktop/Vs Code work/VS CODE 2/nu-eva-fsf-pt-10-2020-u-c_copy/05-Third-Party-APIs/02-Homework/Photos/overwiew)
 
 Fist, I had to incorperate Moment.JS to include the time and then had to make it dynamic using the a set interval function
 
