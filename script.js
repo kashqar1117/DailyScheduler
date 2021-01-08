@@ -1,45 +1,26 @@
-
+//variables
 var currentTime;
 
 var timeSlots = ['9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm']
 
-
 var planner = JSON.parse(localStorage.getItem('planner')) || [];
 
+generateTimeSlots()
 
-console.log(planner)
-
-//to execute code right away
-setTimeout(function(){
-
-  var now = moment()
-  currentTime = now.format('H');
-  $('#currentDay').text(now.format('MMMM Do YYYY, h:mm:ss a'))
-  generateTimeSlots()
-
-}, 100)
-
-//to update timeslots colors every 10 minutes
+// set interval for dynamic time
 setInterval(function () {
-
-  generateTimeSlots()
-}, 100000);
-
-// To make time dyanmic
-setInterval(function () {
-
 
   var now = moment()
   currentTime = now.format('H');
   $('#currentDay').text(now.format('MMMM Do YYYY, h:mm:ss a'))
 
- 
-}, 1000);
+}, 100);
 
+setInterval(function () {
 
+  updateSlot()
 
-
-
+}, 100);
 
 // //timzoneClicked
 
@@ -57,62 +38,58 @@ function generateTimeSlots() {
     svBtn.text('save')
     timeZone.addClass('hour col-lg-3')
     txtarea.addClass('textarea col-lg-8')
+    txtarea.attr('timeslot' , timeslot)
     svBtn.addClass('saveBtn')
-
-
-    var tempTime = parseInt(timeslot.split(':00')[0])
-    // console.log(timeslot.split(':00'))
-
-    if (timeslot.split(':00')[1] == "pm" && timeslot.split(':00')[0] != '12') {
-      tempTime = tempTime + 12;
-
-
-    }
-
-    if (currentTime > tempTime) {
-      txtarea.addClass('past')
-
-    } 
-    else if (currentTime < tempTime) {
-      txtarea.addClass('future')
-
-    } 
-    else {
-      txtarea.addClass('present')
-    }
-
-
-
     $('.container').append(timeZone, txtarea, svBtn)
-
 
   }
 
-
 }
 
+//updating slots
+function updateSlot() {
 
+    $('.textarea').each(function(){
+
+      var timeslot = $(this).attr('timeslot')
+     
+
+
+      var tempTime = parseInt(timeslot.split(':00')[0])
+      // console.log(timeslot.split(':00'))
+      
+      if (timeslot.split(':00')[1] == "pm" && timeslot.split(':00')[0] != '12') {
+        tempTime = tempTime + 12;
+            
+      }
+              
+      if (currentTime > tempTime) {
+        $(this).removeClass('present', 'future')
+        $(this).addClass('past')
+        
+      } else if (currentTime < tempTime) {
+        $(this).removeClass('past' , 'present')
+        $(this).addClass('future')
+        
+      } else {
+        $(this).removeClass('future', 'past')
+        $(this).addClass('present')
+      }
+      
+    })
+
+}
 
 $('.saveBtn').on('click', function () {
   var text = $(this).prev().val();
 
-
+  //questions witht the this thing
   var hour = $(this).prev().prev().text()
 
- 
+  //how does this set a key thing work
   planner[hour] = text
+
 
   localStorage.setItem('planner', JSON.stringify(planner))
 
 })
-
-
-
-
-
-
-
-
-
-
-

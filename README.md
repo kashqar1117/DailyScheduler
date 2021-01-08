@@ -1,105 +1,28 @@
-# 05 Third-Party APIs: Work Day Scheduler
+Daily Planner !
 
-## Your Task
+This is very tricky code that I had to while to write. I decided to append all timeslots to the dom from my JQUERY code. It intoduced me to alot of methods that I wouldn't have learned otherwise.
 
-Create a simple calendar application that allows a user to save events for each hour of the day by modifying starter code. This app will run in the browser and feature dynamically updated HTML and CSS powered by jQuery.
+![.Picture od Daily Planner]()
 
-You'll need to use a library like [Moment.js](https://momentjs.com/) to work with dates and times. `Moment.js` has historically been the most popular date/time library but is no longer supported by its developers. However, you can still use it for this project, or you can look into one of the following alternatives:
+Fist, I had to incorperate Moment.JS to include the time and then had to make it dynamic using the a set interval function
 
-  * [Luxon](https://moment.github.io/luxon/)
-
-  * [Day.js](https://day.js.org/)
-
-  * [date-fns](https://date-fns.org/)
-
-  * [js-Joda](https://js-joda.github.io/js-joda/)
-
-Whichever library you choose, be sure to read the documentation carefully!
+![.Set Interval Function]()
 
 
-## User Story
+Then it was time to create all the timeslots and append it to the browser. I did this with the generate timeslots function.
 
-```
-AS AN employee with a busy schedule
-I WANT to add important events to a daily planner
-SO THAT I can manage my time effectively
-```
+![.Generate Time Slots Function]()
 
 
-## Acceptance Criteria
+The homework also called for the colors to change based on time. Red is present , green is future, and grey is past. There was some tricky challenges including this. Like how in mid day 'am' switches to 'pm' or how the color has to be updated every second. This was corrected with the updateSlot function and setInterval function
 
-```
-GIVEN I am using a daily planner to create a schedule
-WHEN I open the planner
-THEN the current day is displayed at the top of the calendar
-WHEN I scroll down
-THEN I am presented with time blocks for standard business hours
-WHEN I view the time blocks for that day
-THEN each time block is color-coded to indicate whether it is in the past, present, or future
-WHEN I click into a time block
-THEN I can enter an event
-WHEN I click the save button for that time block
-THEN the text for that event is saved in local storage
-WHEN I refresh the page
-THEN the saved events persist
-```
+![.Update Slot Function](/Users/kristinaal-ashqar/Pictures/Photos Library.photoslibrary/originals/0/02DBF9BB-6C7E-4290-B197-476411136DA3.jpeg)
+
+![.Set Interval Function]()
 
 
-## Mock-Up
+Finally it was time to save things into local storage using the event listener I made with $('.saveBtn')
 
-The following animation demonstrates the application functionality:
+![.Save Button Event Listener]()
 
-![day planner demo](./Assets/05-third-party-apis-homework-demo.gif)
-
-
-## Grading Requirements
-
-This homework is graded based on the following criteria: 
-
-### Technical Acceptance Criteria: 40%
-
-* Satisfies all of the above acceptance criteria plus the following:
-
-  * Uses the Moment.js library to work with date and time
-
-### Deployment: 32%
-
-* Application deployed at live URL
-
-* Application loads with no errors
-
-* Application GitHub URL submitted
-
-* GitHub repo contains application code
-
-### Application Quality: 15%
-
-* Application user experience is intuitive and easy to navigate
-
-* Application user interface style is clean and polished
-
-* Application resembles the mock-up functionality provided in the homework instructions
-
-### Repository Quality: 13%
-
-* Repository has a unique name
-
-* Repository follows best practices for file structure and naming conventions
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages
-
-* Repository contains quality README file with description, screenshot, and link to deployed application
-
-
-## Review
-
-You are required to submit BOTH of the following for review:
-
-* The URL of the functional, deployed application.
-
-* The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
-
-- - -
-© 2020 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
+This is the trickiest code I have written so far but the most I have learned in one homework assigemnt yet.
