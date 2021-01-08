@@ -6,6 +6,26 @@ var timeSlots = ['9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', 
 
 var planner = JSON.parse(localStorage.getItem('planner')) || [];
 
+
+console.log(planner)
+
+//to execute code right away
+setTimeout(function(){
+
+  var now = moment()
+  currentTime = now.format('H');
+  $('#currentDay').text(now.format('MMMM Do YYYY, h:mm:ss a'))
+  generateTimeSlots()
+
+}, 100)
+
+//to update timeslots colors every 10 minutes
+setInterval(function () {
+
+  generateTimeSlots()
+}, 100000);
+
+// To make time dyanmic
 setInterval(function () {
 
 
@@ -13,8 +33,11 @@ setInterval(function () {
   currentTime = now.format('H');
   $('#currentDay').text(now.format('MMMM Do YYYY, h:mm:ss a'))
 
-  generateTimeSlots()
+ 
 }, 1000);
+
+
+
 
 
 
@@ -73,10 +96,10 @@ function generateTimeSlots() {
 $('.saveBtn').on('click', function () {
   var text = $(this).prev().val();
 
-  //questions witht the this thing
+
   var hour = $(this).prev().prev().text()
 
-  //how does this set a key thing work
+ 
   planner[hour] = text
 
   localStorage.setItem('planner', JSON.stringify(planner))
